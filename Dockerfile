@@ -4,6 +4,6 @@ RUN apt-get update && \
     apt-get -y install openssh-client
 
 RUN mkdir $HOME/.ssh && chmod 600 $HOME/.ssh
-COPY deploy_rsa /root/.ssh/id_rsa
+ONBUILD COPY deploy_rsa $HOME/.ssh/id_rsa
 
 ENTRYPOINT ["/env/bin/python", "-u", "GitAutoDeploy.py", "--ssh-keyscan"]
